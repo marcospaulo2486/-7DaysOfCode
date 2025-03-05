@@ -1,4 +1,3 @@
-//uma calculadores simples que calcule dois valores aravés de funções de operação.
 let v1;
 let v2;
 let operacao = "";
@@ -18,51 +17,65 @@ function produto(v1, v2) {
 function divisao(v1, v2) {
   return Number(v1) / Number(v2);
 }
-do {
-  //usando o 'do...while', já que a primeira vez sempre vamos entrar
 
+do {
   operacao = prompt(
-    `Qual operação você quer realizar? Responda 'soma', 'subtração', 'multiplicação', 'divisão' ou 'sair'.`
+    `Qual operação você quer realizar? Responda '1 ou somar', '2 ou subtrair', '3 ou multiplicar', '4 ou dividir' ou 'sair'.`
   );
+
+  // Verifica se a operação é válida
   while (
-    operacao != "soma" &&
-    operacao != "subtração" &&
-    operacao != "multiplicação" &&
-    operacao != "divisão" &&
-    operacao != "sair"
+    operacao !== "somar" &&
+    operacao !== "1" &&
+    operacao !== "subtrair" &&
+    operacao !== "2" &&
+    operacao !== "multiplicar" &&
+    operacao !== "3" &&
+    operacao !== "dividir" &&
+    operacao !== "4" &&
+    operacao !== "sair"
   ) {
-    //enquanto o texto lido for diferente de "soma", "subtração", "multiplicação", "divisão" e "sair", exibir que não foi reconhecido e perguntar novamente
     alert(`Operação não reconhecida!`);
     operacao = prompt(
-      `Qual operação você quer realizar? Responda 'soma', 'subtração', 'multiplicação', 'divisão' ou 'sair'.`
+      `Qual operação você quer realizar? Responda '1 ou somar', '2 ou subtrair', '3 ou multiplicar', '4 ou dividir' ou 'sair'.`
     );
   }
 
   if (operacao === "sair") {
-    //se o texto lido for "sair", sair do loop e da calculadora
     break;
   }
 
-  v1 = prompt(`Insira o primeiro v:`);
-  v2 = prompt(`Insira o segundo v:`);
+  v1 = prompt(`Insira o primeiro valor:`);
+  v2 = prompt(`Insira o segundo valor:`);
+
+  // Verifica se os valores são números válidos
+  if (isNaN(v1) || isNaN(v2)) {
+    alert("Por favor, insira valores numéricos válidos.");
+    continue;
+  }
+
   switch (operacao) {
-    case "soma":
-      alert(`O resultado da ${operacao} é ${soma(v1, v2)}`);
+    case "somar":
+    case "1":
+      alert(`O resultado da soma é ${soma(v1, v2)}`);
       break;
-    case "subtração":
-      alert(`O resultado da ${operacao} é ${subtracao(v1, v2)}`);
+    case "subtrair":
+    case "2":
+      alert(`O resultado da subtração é ${subtracao(v1, v2)}`);
       break;
-    case "multiplicação":
-      alert(`O resultado da ${operacao} é ${produto(v1, v2)}`);
+    case "multiplicar":
+    case "3":
+      alert(`O resultado da multiplicação é ${produto(v1, v2)}`);
       break;
-    case "divisão":
-      alert(`O resultado da ${operacao} é ${divisao(v1, v2)}`);
+    case "dividir":
+    case "4":
+      if (v2 == 0) {
+        alert("Não é possível dividir por zero.");
+      } else {
+        alert(`O resultado da divisão é ${divisao(v1, v2)}`);
+      }
       break;
   }
-} while (
-  operacao === "soma" ||
-  operacao === "subtração" ||
-  operacao === "multiplicação" ||
-  operacao === "divisão"
-);
-alert(`Até a próxima!`);
+} while (operacao !== "sair");
+
+alert(`Foi Um Prazer!`);
